@@ -13,14 +13,22 @@ module.exports = (env, argv) => {
         entry: {
             secure: {
                 import: "./src/store/index",
-                filename: "[name].js",
+                filename: "[name]/index.js",
                 library: {
-                    name: "SecureLS",
+                    name: "Secure",
                     type: 'umd',
                     umdNamedDefine: true
                 }
             },
-            test: "./src/test/index",
+            base64: {
+                import: "./src/base64/index",
+                filename: "[name]/index.js",
+                library: {
+                    name: "Base64",
+                    type: 'umd',
+                    umdNamedDefine: true
+                }
+            },
             index: "./src/index"
         },
         //出口文件的配置项

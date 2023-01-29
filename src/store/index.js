@@ -1,4 +1,4 @@
-import Base64 from './Base64';
+import Base64 from '../base64';
 import CryptoJS from 'crypto-js'
 import constants from './constants';
 import LZString from 'lz-string/libs/lz-string';
@@ -7,16 +7,9 @@ import DES from 'crypto-js/tripledes';
 import RABBIT from 'crypto-js/rabbit';
 import RC4 from 'crypto-js/rc4';
 
-export default class SecureLS {
+export default class Secure {
     constructor(config) {
-        this.Base64 = Base64;
-        this.LZString = LZString;
         this.constants = constants;
-        this.AES = AES;
-        this.DES = DES;
-        this.RABBIT = RABBIT;
-        this.RC4 = RC4;
-
         this.config = {
             isCompression: config && config.isCompression || true,
             production: config && config.production || true,
