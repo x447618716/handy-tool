@@ -1,5 +1,6 @@
 //引入nodejs路径模块, 用于操作文件路径。
 const path = require('path');
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const {merge} = require('webpack-merge');
 const devConfig = require('./webpack.dev.config');
 const proConfig = require('./webpack.pro.config');
@@ -45,6 +46,7 @@ module.exports = (env, argv) => {
             clean: true
         },
         resolve: {
+            extensions: ['.tsx', '.ts', '.js'],
             alias: {
                 '@': path.resolve(__dirname, 'src'),
             },
@@ -53,15 +55,28 @@ module.exports = (env, argv) => {
             rules: [
                 {
                     test: /\.js$/,
-                    loader: "babel-loader",
+                    use: [
+                        {
+                            loader: 'babel-loader'
+                        },
+                        {
+                            loader: 'ts-loader'
+                        }
+                    ],
                     exclude: /node_modules/
                 },
-                // {
-                //     test: /(\.jsx|\.js)$/,
-                //     loader: "eslint-loader",
-                //     exclude: /node_modules/
-                // }
+                {
+                    test: /\.ts(x)?$/,
+                    loader: 'ts-loader',
+                    exclude: /node_modules/
+                }
             ],
-        }
+        },
+        plugins: [
+            // new BundleAnalyzerPlugin({
+            //     analyzerMode: 'static',
+            //     openAnalyzer: false,
+            // })
+        ]
     }, config)
 }

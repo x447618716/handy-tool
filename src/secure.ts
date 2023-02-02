@@ -1,15 +1,39 @@
-import Base64 from '../base64';
+import Base64 from './base64';
 import CryptoJS from "crypto-js"
-import constants from './constants';
-import LZString from "lz-string/libs/lz-string";
+import constants from "./store/constants";
+import LZString from "lz-string/";
 import AES from "crypto-js/aes";
 import DES from "crypto-js/tripledes";
 import RABBIT from 'crypto-js/rabbit';
 import RC4 from 'crypto-js/rc4';
 
+interface config {
+    isCompression: boolean;
+    encryptionSecret: any;
+    production: boolean;
+    encodingType: string;
+    storage: any
+}
+
 export default class Secure {
-    constructor({isCompression, production, storage, encodingType, encryptionSecret}) {
+    private config: { isCompression: boolean; encryptionSecret: any; production: boolean; encodingType: string; storage: any };
+    private constants: any;
+    private _isBase64: any;
+    private _isAES: boolean | undefined;
+    private _isRabbit: boolean | undefined;
+    private _isDES: boolean | undefined;
+    private _isRC4: boolean | undefined;
+    private _isCompression: boolean | undefined;
+
+    constructor({
+                    encodingType,
+                    encryptionSecret,
+                    isCompression,
+                    production,
+                    storage
+                }: { isCompression: boolean, production: boolean, storage: Storage, encodingType: string, encryptionSecret: string }) {
         this.constants = constants;
+
         this.config = {
             isCompression: isCompression ? Boolean(isCompression) : true,
             production: production ? Boolean(production) : true,
@@ -17,6 +41,7 @@ export default class Secure {
             encodingType: encodingType ? encodingType.toLowerCase() : 'base64',
             encryptionSecret: encryptionSecret
         };
+
         this.init();
     }
 
@@ -69,7 +94,7 @@ export default class Secure {
         return this.config.isCompression;
     }
 
-    get(key) {
+    get(key: any) {
         if (!key) {
             throw new Error(`未提供关键的Key`)
             return;
@@ -123,14 +148,14 @@ export default class Secure {
         }
     }
 
-    set(key, data) {
+    set(key: string, data: any):void {
         if (!key) {
             throw new Error(`未提供关键的Key！`)
             return;
         }
         if (this.config.production) {
             if (data === null || data === undefined || data === '') {
-                return '';
+                return;
             }
 
             let jsonData, encodedData, compressedData;
@@ -169,15 +194,15 @@ export default class Secure {
         }
     }
 
-    remove(key) {
+    remove(key: string) {
         if (!key) {
             throw new Error(`未提供关键的Key`)
             return;
         }
-        return this.config.removeItem(key)
+        return this.config.storage.removeItem(key)
     }
 
     removeAll() {
-        return this.config.clear()
+        return this.config.storage.clear()
     }
 }

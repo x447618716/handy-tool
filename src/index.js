@@ -1,5 +1,10 @@
-import SecureLS from './store/index'
+export * from './store'
+export * from './base64/index'
+
+import Secure from './store'
+import base64 from './base64/index'
 
 export default {
-    SecureLS,
+    Secure,
+    base64
 }
