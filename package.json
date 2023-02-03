@@ -1,6 +1,6 @@
 {
   "name": "handy-tool",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A practical assistant tool",
   "main": "dist/index.js",
   "typings": "dist/types/index.d.ts",

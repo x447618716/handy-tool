@@ -12,17 +12,17 @@ module.exports = (env, argv) => {
     return merge({
         //入口文件的配置项
         entry: {
-            secure: {
-                import: "./src/store/index",
+            storage: {
+                import: "./src/storage",
                 filename: "[name]/index.js",
                 library: {
-                    name: "Secure",
+                    name: "Storage",
                     type: 'umd',
                     umdNamedDefine: true
                 }
             },
             base64: {
-                import: "./src/base64/index",
+                import: "./src/base64",
                 filename: "[name]/index.js",
                 library: {
                     name: "Base64",

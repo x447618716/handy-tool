@@ -1,6 +1,6 @@
 export default {
     _keyStr: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=',
-    encode: function (e) {
+    encode: function (e: string) {
         let t = '';
         let n, r, i, s, o, u, a;
         let f = 0;
@@ -23,7 +23,7 @@ export default {
         }
         return t;
     },
-    decode: function (e) {
+    decode: function (e: string) {
         let t = '';
         let n, r, i;
         let s, o, u, a;
@@ -49,7 +49,7 @@ export default {
         t = this._utf8Decode(t);
         return t;
     },
-    _utf8Encode: function (e) {
+    _utf8Encode: function (e: string) {
         e = e.replace(/\r\n/g, '\n');
         let t = '';
 
@@ -69,7 +69,7 @@ export default {
         }
         return t;
     },
-    _utf8Decode: function (e) {
+    _utf8Decode: function (e: string) {
         let t = '';
         let n = 0;
         let r, c2, c3;
