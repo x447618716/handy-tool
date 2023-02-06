@@ -18,12 +18,9 @@ const constants = {
 }
 
 export default class Storage {
-    private constants: any;
     private config: { isCompression: boolean; encryptionSecret: string; production: boolean; encodingType: string; storage: any };
 
     constructor(config?: { isCompression?: boolean, production?: boolean, storage?: any, encodingType?: string, encryptionSecret?: string }) {
-        this.constants = constants;
-
         this.config = {
             isCompression: config && config.isCompression ? Boolean(config.isCompression) : true,
             production: config && config.production ? Boolean(config.production) : true,
@@ -37,7 +34,7 @@ export default class Storage {
 
     init() {
         if (!this._checkType()) {
-            throw new Error(`不支持[${this.config.encodingType}]的编码类型,可选编码类型有: ${Object.values(this.constants.encodingType).join(',')}`)
+            throw new Error(`不支持[${this.config.encodingType}]的编码类型,可选编码类型有: ${Object.values(constants.encodingType).join(',')}`)
         }
 
         if (!this._checkStorage()) {
@@ -46,7 +43,7 @@ export default class Storage {
     }
 
     _checkType() {
-        return Object.values(this.constants.encodingType).includes(this.config.encodingType)
+        return Object.values(constants.encodingType).includes(this.config.encodingType)
     }
 
     _checkStorage() {
@@ -59,20 +56,20 @@ export default class Storage {
             deCompressedData = LZString.decompressFromUTF16(data);
         }
         switch (encodingType) {
-            case this.constants.encodingType.BASE64:
+            case constants.encodingType.BASE64:
                 decodedData = Base64.decode(deCompressedData);
                 break;
-            case this.constants.encodingType.AES:
-                bytes = AES.decrypt(deCompressedData.toString(), this.config.encryptionSecret || this.constants.encryptionSecret);
+            case constants.encodingType.AES:
+                bytes = AES.decrypt(deCompressedData.toString(), this.config.encryptionSecret || constants.encryptionSecret);
                 break;
-            case this.constants.encodingType.DES:
-                bytes = DES.decrypt(deCompressedData.toString(), this.config.encryptionSecret || this.constants.encryptionSecret);
+            case constants.encodingType.DES:
+                bytes = DES.decrypt(deCompressedData.toString(), this.config.encryptionSecret || constants.encryptionSecret);
                 break;
-            case this.constants.encodingType.RABBIT:
-                bytes = RABBIT.decrypt(deCompressedData.toString(), this.config.encryptionSecret || this.constants.encryptionSecret);
+            case constants.encodingType.RABBIT:
+                bytes = RABBIT.decrypt(deCompressedData.toString(), this.config.encryptionSecret || constants.encryptionSecret);
                 break;
-            case this.constants.encodingType.RC4:
-                bytes = RC4.decrypt(deCompressedData.toString(), this.config.encryptionSecret || this.constants.encryptionSecret);
+            case constants.encodingType.RC4:
+                bytes = RC4.decrypt(deCompressedData.toString(), this.config.encryptionSecret || constants.encryptionSecret);
                 break;
         }
         if (bytes) {
@@ -85,20 +82,20 @@ export default class Storage {
     _encryptType(encodingType: string, data: any) {
         let encodedData: string = '', compressedData;
         switch (encodingType) {
-            case this.constants.encodingType.BASE64:
+            case constants.encodingType.BASE64:
                 encodedData = Base64.encode(data);
                 break;
-            case this.constants.encodingType.AES:
-                encodedData = AES.encrypt(data, this.config.encryptionSecret || this.constants.encryptionSecret).toString();
+            case constants.encodingType.AES:
+                encodedData = AES.encrypt(data, this.config.encryptionSecret || constants.encryptionSecret).toString();
                 break;
-            case this.constants.encodingType.DES:
-                encodedData = DES.encrypt(data, this.config.encryptionSecret || this.constants.encryptionSecret).toString();
+            case constants.encodingType.DES:
+                encodedData = DES.encrypt(data, this.config.encryptionSecret || constants.encryptionSecret).toString();
                 break;
-            case this.constants.encodingType.RABBIT:
-                encodedData = RABBIT.encrypt(data, this.config.encryptionSecret || this.constants.encryptionSecret).toString();
+            case constants.encodingType.RABBIT:
+                encodedData = RABBIT.encrypt(data, this.config.encryptionSecret || constants.encryptionSecret).toString();
                 break;
-            case this.constants.encodingType.RC4:
-                encodedData = RC4.encrypt(data, this.config.encryptionSecret || this.constants.encryptionSecret).toString();
+            case constants.encodingType.RC4:
+                encodedData = RC4.encrypt(data, this.config.encryptionSecret || constants.encryptionSecret).toString();
                 break;
         }
         compressedData = encodedData;
@@ -154,7 +151,7 @@ export default class Storage {
                 throw new Error('Could not stringify data.');
             }
 
-            compressedData = this._encryptType(this.config.encodingType,jsonData)
+            compressedData = this._encryptType(this.config.encodingType, jsonData)
 
             this.config.storage.setItem(key, compressedData)
         } else {

@@ -36,12 +36,12 @@ module.exports = (env, argv) => {
         output: {
             filename: "[name].js",
             //所有输出文件的目标路径
-            path: path.resolve(__dirname, 'dist'),
+            path: path.resolve(__dirname, 'lib'),
             library: {
                 name: "[name]",
-                // type: 'commonjs-static',
-                type: 'umd',
-                umdNamedDefine: true
+                type: 'commonjs-static',
+                // type: 'umd',
+                // umdNamedDefine: true
             },
             clean: true
         },

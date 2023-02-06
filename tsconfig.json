@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/",
+    "outDir": "./lib/",
     "declaration": true,
-    "declarationDir": "./dist/types/",
+    "declarationDir": "./lib/types/",
     "sourceMap": true,
     "strict": true,
     "noImplicitReturns": true,
@@ -12,7 +12,9 @@
     "moduleResolution": "node",
     "target": "es5",
     "allowJs": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
   "include": [
     "./src/**/*"
