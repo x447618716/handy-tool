@@ -12,9 +12,11 @@
     "moduleResolution": "node",
     "target": "es5",
     "allowJs": true,
+    "checkJs": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "noEmitOnError": true
   },
   "include": [
     "./src/**/*"

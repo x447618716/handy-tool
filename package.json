@@ -2,8 +2,9 @@
   "name": "handy-tool",
   "version": "1.0.3",
   "description": "A practical assistant tool",
-  "main": "dist/index.js",
-  "typings": "dist/types/index.d.ts",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "typings": "lib/types/index.d.ts",
   "scripts": {
     "server": "webpack-dev-server --mode=development --config ./webpack.config.js",
     "build": "webpack --mode=production --config ./webpack.config.js"

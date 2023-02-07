@@ -17,7 +17,7 @@ const constants = {
     encryptionSecret: '',
 }
 
-export default class Storage {
+export class Storage {
     private config: { isCompression: boolean; encryptionSecret: string; production: boolean; encodingType: string; storage: any };
 
     constructor(config?: { isCompression?: boolean, production?: boolean, storage?: any, encodingType?: string, encryptionSecret?: string }) {
@@ -171,3 +171,5 @@ export default class Storage {
         return this.config.storage.clear()
     }
 }
+
+export default Storage

@@ -30,6 +30,15 @@ module.exports = (env, argv) => {
                     umdNamedDefine: true
                 }
             },
+            jsonp: {
+                import: "./src/jsonp",
+                filename: "[name]/index.js",
+                library: {
+                    name: "Jsonp",
+                    type: 'umd',
+                    umdNamedDefine: true
+                }
+            },
             index: "./src/index"
         },
         //出口文件的配置项
@@ -39,9 +48,9 @@ module.exports = (env, argv) => {
             path: path.resolve(__dirname, 'lib'),
             library: {
                 name: "[name]",
-                type: 'commonjs-static',
-                // type: 'umd',
-                // umdNamedDefine: true
+                // type: 'commonjs-static',
+                type: 'umd',
+                umdNamedDefine: true
             },
             clean: true
         },
