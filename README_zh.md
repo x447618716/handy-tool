@@ -1,23 +1,23 @@
-[中文](./README_zh.md) | [英文](./README.md)
+[中文](./README_zh.md) | [英文](./README.md) 
 
-## handy-tool 
+## handy-tool
 
-Fast, generic JavaScript/node.js utility functions.
+快速通用的JavaScript/node.js实用程序函数。
 
 ## API
 
-* [JSONP](./doc/jsonp/en.md) for to initiate jsonp requests
-* [Storage](./doc/storage/en.md) for local storage security encryption
-* [Base64](./doc/base64/en.md) for Base64 encryption and decryption
+* [JSONP](./doc/jsonp/zh.md) 用于实现jsonp请求
+* [Storage](./doc/storage/zh.md) 用于本地存储安全加密
+* [Base64](./doc/base64/zh.md) 用于Base64加解密
 
 
-## Install
+## 安装
 ```shell script
 npm i handy-tool --save
 ``` 
 
 
-## Usage(Take base64 as an example)
+## 使用(以 Base64 为例)
 
 ```shell script
 import handyTool from "handy-tool"

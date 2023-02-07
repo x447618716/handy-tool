@@ -1,4 +1,4 @@
-interface options {
+export interface options {
     url: string,
     data: object,
     time?: number,
@@ -8,6 +8,8 @@ interface options {
     fail?: (json: any) => void
 }
 
+declare const window: any;
+
 const formatParams = (data: object) => {
     let arr = [];
     for (let name in data) {
@@ -16,14 +18,14 @@ const formatParams = (data: object) => {
     return arr.join('&');
 }
 
+
 export const jsonp = (options: options) => {
     return new Promise((resolve, reject) => {
         if (!options.url) {
-            throw new Error("参数不合法");
+            throw new Error("请求地址不能为空！");
         }
 
         //创建 script 标签并加入到页面中
-        let window: any;
         let timer: any;
         let callbackName: string = ('jsonp_' + Math.random()).replace(".", "");
         let oHead = document.getElementsByTagName('head')[0];
@@ -48,7 +50,7 @@ export const jsonp = (options: options) => {
         if (options.url.search(/\?/g) != -1) {
             oS.src = options.url + `&${options.callbackKey ? options.callbackKey : 'jsonp'}=${options.callbackName ? options.callbackName : callbackName}` + params;
         } else {
-            oS.src = options.url + `?${options.callbackKey ? options.callbackKey : 'jsonp'}=${callbackName}` + params;
+            oS.src = options.url + `?${options.callbackKey ? options.callbackKey : 'jsonp'}=${options.callbackName ? options.callbackName : callbackName}` + params;
         }
 
         //超时处理

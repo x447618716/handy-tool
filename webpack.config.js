@@ -34,7 +34,7 @@ module.exports = (env, argv) => {
                 import: "./src/jsonp",
                 filename: "[name]/index.js",
                 library: {
-                    name: "Jsonp",
+                    name: "jsonp",
                     type: 'umd',
                     umdNamedDefine: true
                 }
