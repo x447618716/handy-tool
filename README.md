@@ -1,4 +1,4 @@
-[中文](./README_zh.md) | [英文](./README.md)
+[中文](./README_zh.md) | [English](./README.md)
 
 ## handy-tool 
 

@@ -1,9 +1,9 @@
 {
   "name": "handy-tool",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A practical assistant tool",
   "main": "lib/index.js",
-  "typings": "lib/types/index.d.ts",
+  "typings": "lib/index.d.ts",
   "scripts": {
     "server": "webpack-dev-server --mode=development --config ./webpack.config.js",
     "build": "webpack --mode=production --config ./webpack.config.js"
@@ -32,14 +32,16 @@
   "homepage": "https://github.com/x447618716/handy-tool",
   "license": "MIT",
   "devDependencies": {
-    "@types/crypto-js": "^4.1.1",
-    "@types/lz-string": "^1.3.34",
     "@babel/core": "^7.20.7",
     "@babel/preset-env": "^7.20.2",
+    "@types/crypto-js": "^4.1.1",
+    "@types/lz-string": "^1.3.34",
     "babel-loader": "^9.1.0",
+    "prettier": "^2.8.3",
+    "eslint": "^8.33.0",
+    "terser-webpack-plugin": "^5.3.6",
     "ts-loader": "^9.4.2",
     "typescript": "^4.9.4",
-    "prettier": "^2.8.3",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.11.1",
@@ -50,6 +52,7 @@
     "crypto-js": "^4.1.1"
   },
   "files": [
-    "lib"
+    "lib",
+    "doc"
   ]
 }

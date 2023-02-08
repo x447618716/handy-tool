@@ -2,6 +2,7 @@
 const path = require('path');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const {merge} = require('webpack-merge');
+const TerserPlugin = require("terser-webpack-plugin");
 const devConfig = require('./webpack.dev.config');
 const proConfig = require('./webpack.pro.config');
 
@@ -12,33 +13,36 @@ module.exports = (env, argv) => {
     return merge({
         //入口文件的配置项
         entry: {
-            storage: {
-                import: "./src/storage",
-                filename: "[name]/index.js",
-                library: {
-                    name: "Storage",
-                    type: 'umd',
-                    umdNamedDefine: true
-                }
-            },
-            base64: {
-                import: "./src/base64",
-                filename: "[name]/index.js",
-                library: {
-                    name: "Base64",
-                    type: 'umd',
-                    umdNamedDefine: true
-                }
-            },
-            jsonp: {
-                import: "./src/jsonp",
-                filename: "[name]/index.js",
-                library: {
-                    name: "jsonp",
-                    type: 'umd',
-                    umdNamedDefine: true
-                }
-            },
+            // storage: {
+            //     import: "./src/storage",
+            //     filename: "[name]/index.js",
+            //     library: {
+            //         name: "Storage",
+            //         type: 'umd',
+            //         umdNamedDefine: true
+            //     }
+            // },
+            // base64: {
+            //     import: "./src/base64",
+            //     filename: "[name]/index.js",
+            //     library: {
+            //         name: "Base64",
+            //         type: 'umd',
+            //         umdNamedDefine: true
+            //     }
+            // },
+            // jsonp: {
+            //     import: "./src/jsonp",
+            //     filename: "[name]/index.js",
+            //     library: {
+            //         name: "jsonp",
+            //         type: 'umd',
+            //         umdNamedDefine: true
+            //     }
+            // },
+            storage:'./src/storage',
+            base64:'./src/base64',
+            jsonp:'./src/jsonp',
             index: "./src/index"
         },
         //出口文件的配置项
@@ -47,10 +51,10 @@ module.exports = (env, argv) => {
             //所有输出文件的目标路径
             path: path.resolve(__dirname, 'lib'),
             library: {
-                name: "[name]",
-                // type: 'commonjs-static',
-                type: 'umd',
-                umdNamedDefine: true
+                // name: "[name]",
+                type: 'commonjs-static',
+                // type: 'umd',
+                // umdNamedDefine: true
             },
             clean: true
         },
@@ -86,6 +90,17 @@ module.exports = (env, argv) => {
             //     analyzerMode: 'static',
             //     openAnalyzer: false,
             // })
-        ]
+        ],
+        optimization: {
+            minimize: true,
+            minimizer: [new TerserPlugin({
+                terserOptions: {
+                    format: {
+                        comments: false,
+                    },
+                },
+                extractComments: false
+            })],
+        },
     }, config)
 }

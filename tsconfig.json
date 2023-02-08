@@ -2,23 +2,28 @@
   "compilerOptions": {
     "outDir": "./lib/",
     "declaration": true,
-    "declarationDir": "./lib/types/",
+//    "declarationDir": "./lib/types/",
     "sourceMap": true,
     "strict": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
     "module": "es6",
-    "moduleResolution": "node",
+//    "moduleResolution": "node",
     "target": "es5",
     "allowJs": true,
     "checkJs": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "noEmitOnError": true
   },
   "include": [
     "./src/**/*"
-  ]
+  ],
 }
