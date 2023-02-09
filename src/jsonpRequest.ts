@@ -9,7 +9,11 @@ const formatParams = (data: object | undefined) => {
         encodeURIComponent(data[name as keyof typeof data])
     );
   }
-  return arr.join("&");
+  if(!arr.length){
+      return '';
+  }else{
+      return `&${arr.join("&")}`;
+  }
 };
 
 export const jsonpRequest = (
