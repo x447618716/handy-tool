@@ -1,3 +1,5 @@
+[中文](./zh.md) | [English](./en.md)
+
 ## API
 
 * **encode** Base64 encryption function

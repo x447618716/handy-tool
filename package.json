@@ -1,8 +1,9 @@
 {
   "name": "handy-tool",
   "version": "1.0.4",
-  "description": "A practical assistant tool",
+  "description": "A set of fast and universal JavaScript/node.js utility functions.",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "typings": "lib/index.d.ts",
   "scripts": {
     "server": "webpack-dev-server --mode=development --config ./webpack.config.js",
@@ -54,5 +55,11 @@
   "files": [
     "lib",
     "doc"
+  ],
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
   ]
 }

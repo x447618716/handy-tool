@@ -1,13 +1,13 @@
-export * from "./storage";
+export * from "./secureStorage";
 export * from "./base64";
-export * from "./jsonp";
+export * from "./jsonpRequest";
 
-import jsonp from "./jsonp";
-import storage from "./storage";
+import jsonpRequest from "./jsonpRequest";
+import SecureStorage from "./secureStorage";
 import base64 from "./base64";
 
 export default {
-  storage,
-  jsonp,
-  base64
+  SecureStorage,
+  jsonpRequest,
+  base64,
 };

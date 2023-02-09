@@ -2,7 +2,7 @@
 
 ## handy-tool 
 
-Fast, generic JavaScript/node.js utility functions.
+A set of fast and universal JavaScript/node.js utility functions.
 
 ## API
 

@@ -17,7 +17,7 @@ module.exports = (env, argv) => {
             //     import: "./src/storage",
             //     filename: "[name]/index.js",
             //     library: {
-            //         name: "Storage",
+            //         name: "SecureStorage",
             //         type: 'umd',
             //         umdNamedDefine: true
             //     }
@@ -35,14 +35,14 @@ module.exports = (env, argv) => {
             //     import: "./src/jsonp",
             //     filename: "[name]/index.js",
             //     library: {
-            //         name: "jsonp",
+            //         name: "jsonpRequest",
             //         type: 'umd',
             //         umdNamedDefine: true
             //     }
             // },
-            storage:'./src/storage',
+            secureStorage:'./src/secureStorage',
             base64:'./src/base64',
-            jsonp:'./src/jsonp',
+            jsonpRequest:'./src/jsonpRequest',
             index: "./src/index"
         },
         //出口文件的配置项

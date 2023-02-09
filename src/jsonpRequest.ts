@@ -12,17 +12,19 @@ const formatParams = (data: object | undefined) => {
   return arr.join("&");
 };
 
-export const jsonp = (options: {
-  url: string;
-  data?: object;
-  time?: number;
-  callbackKey?: string;
-  callbackName?: string;
-  success?: (json: any) => void;
-  fail?: (json: any) => void;
-}) => {
+export const jsonpRequest = (
+  url: string,
+  options: {
+    data?: object;
+    timeout?: number;
+    callbackKey?: string;
+    callbackName?: string;
+    success?: (data: any) => void;
+    fail?: (error: any) => void;
+  }
+) => {
   return new Promise((resolve, reject) => {
-    if (!options.url) {
+    if (!url) {
       throw new Error("请求地址不能为空！");
     }
 
@@ -50,16 +52,16 @@ export const jsonp = (options: {
       };
 
     //发送请求
-    if (options.url.search(/\?/g) != -1) {
+    if (url.search(/\?/g) != -1) {
       oS.src =
-        options.url +
+        url +
         `&${options.callbackKey ? options.callbackKey : "jsonp"}=${
           options.callbackName ? options.callbackName : callbackName
         }` +
         params;
     } else {
       oS.src =
-        options.url +
+        url +
         `?${options.callbackKey ? options.callbackKey : "jsonp"}=${
           options.callbackName ? options.callbackName : callbackName
         }` +
@@ -67,16 +69,16 @@ export const jsonp = (options: {
     }
 
     //超时处理
-    if (options.time) {
+    if (options.timeout) {
       timer = setTimeout(function () {
         window[options.callbackName ? options.callbackName : callbackName] =
           null;
         oHead.removeChild(oS);
         options.fail && options.fail({ message: "Time out" });
         reject({ message: "Time out" });
-      }, options.time);
+      }, options.timeout);
     }
   });
 };
 
-export default jsonp;
+export default jsonpRequest;

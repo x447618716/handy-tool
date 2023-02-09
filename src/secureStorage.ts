@@ -17,18 +17,18 @@ const constants = {
   encryptionSecret: "",
 };
 
-export class Storage {
+export class SecureStorage {
   private readonly config: {
     isCompression: boolean;
     encryptionSecret: string;
-    production: boolean;
+    isProduction: boolean;
     encodingType: string;
     storage: any;
   };
 
   constructor(config?: {
     isCompression?: boolean;
-    production?: boolean;
+    isProduction?: boolean;
     storage?: any;
     encodingType?: string;
     encryptionSecret?: string;
@@ -36,8 +36,8 @@ export class Storage {
     this.config = {
       isCompression:
         config && config.isCompression ? Boolean(config.isCompression) : true,
-      production:
-        config && config.production ? Boolean(config.production) : true,
+      isProduction:
+        config && config.isProduction ? Boolean(config.isProduction) : true,
       storage: (config && config.storage) || window.localStorage,
       encodingType:
         config && config.encodingType
@@ -177,7 +177,7 @@ export class Storage {
       return jsonData;
     }
 
-    if (this.config.production) {
+    if (this.config.isProduction) {
       try {
         jsonData = JSON.parse(
           this._decryptType(this.config.encodingType, data)
@@ -197,7 +197,7 @@ export class Storage {
       throw new Error(`未提供关键的Key！`);
       return;
     }
-    if (this.config.production) {
+    if (this.config.isProduction) {
       if (data === null || data === undefined || data === "") {
         return;
       }
@@ -231,4 +231,4 @@ export class Storage {
   }
 }
 
-export default Storage;
+export default SecureStorage;
