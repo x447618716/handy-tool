@@ -33,13 +33,12 @@ export const jsonpRequest = (
     }
 
     //创建 script 标签并加入到页面中
-    let timer: any;
     let callbackName: string = ("jsonp_" + Math.random()).replace(".", "");
     let oHead = document.getElementsByTagName("head")[0];
     let params = formatParams(options.data);
-    let oS = document.createElement("script");
+    let oS:any = document.createElement("script");
     oHead.appendChild(oS);
-    oS.onerror = (e) => {
+    oS.onerror = (e: any) => {
       reject(e);
       options.fail && options.fail(e);
     };
@@ -48,7 +47,7 @@ export const jsonpRequest = (
     window[options.callbackName ? options.callbackName : callbackName] =
       function (json: any) {
         oHead.removeChild(oS);
-        clearTimeout(timer);
+        clearTimeout(oS.timer);
         window[options.callbackName ? options.callbackName : callbackName] =
           null;
         options.success && options.success(json);
@@ -74,7 +73,7 @@ export const jsonpRequest = (
 
     //超时处理
     if (options.timeout) {
-      timer = setTimeout(function () {
+      oS.timer = setTimeout(function () {
         window[options.callbackName ? options.callbackName : callbackName] =
           null;
         oHead.removeChild(oS);

@@ -43,6 +43,7 @@ module.exports = (env, argv) => {
             secureStorage:'./src/secureStorage',
             base64:'./src/base64',
             jsonpRequest:'./src/jsonpRequest',
+            dataFormat:'./src/dataFormat',
             index: "./src/index"
         },
         //出口文件的配置项
