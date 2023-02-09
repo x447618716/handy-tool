@@ -2,7 +2,7 @@
 
 ## jsonpRequest
 
-Used to implement jsonp requests
+用于实现jsonp请求
 
 ## 安装
 ```shell script
