@@ -1,6 +1,6 @@
 {
   "name": "handy-tool",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A set of fast and universal JavaScript/node.js utility functions.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
