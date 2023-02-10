@@ -1,6 +1,11 @@
-export interface size {
+export interface divisionSize {
   index: number;
-  separator?: string | number | null | undefined;
+  separator?: string;
+}
+
+export interface reductionSize {
+  index: number;
+  deleteCount?: number;
 }
 
 /**
@@ -9,7 +14,7 @@ export interface size {
 export const division = (
   source: string | number,
   option: {
-    size: number | Array<size>;
+    size: number | Array<divisionSize>;
     separator?: string;
   }
 ) => {
@@ -17,13 +22,8 @@ export const division = (
     let startData = source.toString().split("");
     if (typeof option.size == "number") {
       let length = Math.floor(startData.length / option.size);
-      let length2 = (option.separator || "").toString().length;
       for (let i = 1; i <= length; i++) {
-        startData.splice(
-          i * option.size + (i - 1) * length2,
-          0,
-          option.separator || ""
-        );
+        startData.splice(i * option.size + (i - 1), 0, option.separator || "");
       }
       return startData.join("");
     } else if (Array.isArray(option.size)) {
@@ -32,9 +32,9 @@ export const division = (
         startData.splice(
           item.index + length,
           0,
-          (item.separator as string) || option.separator || ""
+          item.separator || option.separator || ""
         );
-        length += (item.separator || option.separator || "").toString().length;
+        length += 1;
       });
       return startData.join("");
     } else {
@@ -51,28 +51,26 @@ export const division = (
 export const reduction = (
   source: string | number,
   option: {
-    separator?: string;
-    size: number | Array<size>;
+    deleteCount?: number;
+    size: number | Array<reductionSize>;
   }
 ) => {
   if (source) {
     let startData = source.toString().split("");
     if (typeof option.size == "number") {
       let length = Math.floor(startData.length / option.size);
-      let length2 = (option.separator || "").toString().length;
       for (let i = 1; i <= length; i++) {
-        startData.splice(i * option.size, length2);
+        startData.splice(i * option.size, option.deleteCount || 0);
       }
       return startData.join("");
     } else if (Array.isArray(option.size)) {
+      let length = 0;
       option.size.forEach((item) => {
-        let length = (item.separator || option.separator || "").toString()
-          .length;
-        if (item.index > startData.length) {
-          startData.splice(startData.length - 1, length);
-        } else {
-          startData.splice(item.index, length);
-        }
+        startData.splice(
+          item.index - length,
+          item.deleteCount || option.deleteCount || 0
+        );
+        length += item.deleteCount || option.deleteCount || 0;
       });
       return startData.join("");
     } else {
@@ -85,5 +83,5 @@ export const reduction = (
 
 export default {
   division,
-  reduction
+  reduction,
 };

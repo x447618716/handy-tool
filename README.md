@@ -9,7 +9,7 @@ A set of fast and universal JavaScript/node.js utility functions.
 * [JSONP](./doc/jsonp/en.md) for to initiate jsonp requests
 * [Storage](./doc/storage/en.md) for local storage security encryption
 * [Base64](./doc/base64/en.md) for Base64 encryption and decryption
-* [DataFormat](./doc/dataFormat/en.md) for Base64 encryption and decryption
+* [DataFormat](./doc/dataFormat/en.md) for data operation
 
 
 ## Install

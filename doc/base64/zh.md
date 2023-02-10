@@ -1,5 +1,10 @@
 [中文](./zh.md) | [English](./en.md)
 
+## 安装
+```shell script
+npm i handy-tool --save
+``` 
+
 ## API
 
 * **encode** Base64 加密函数
