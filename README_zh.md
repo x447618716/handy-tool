@@ -1,4 +1,4 @@
-[中文](./README_zh.md) | [英文](./README.md) 
+[中文](./README_zh.md) | [English](./README.md)
 
 ## handy-tool
 
@@ -9,6 +9,7 @@
 * [JSONP](./doc/jsonp/zh.md) 用于实现jsonp请求
 * [Storage](./doc/storage/zh.md) 用于本地存储安全加密
 * [Base64](./doc/base64/zh.md) 用于Base64加解密
+* [DataFormat](./doc/dataFormat/zh.md) 用于数据操作
 
 
 ## 安装

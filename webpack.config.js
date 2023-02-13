@@ -3,12 +3,12 @@ const path = require('path');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const {merge} = require('webpack-merge');
 const TerserPlugin = require("terser-webpack-plugin");
-const devConfig = require('./webpack.dev.config');
-const proConfig = require('./webpack.pro.config');
 
 
 module.exports = (env, argv) => {
-    const config = argv.mode === 'development' ? devConfig : proConfig
+    const config = argv.mode === 'development' ? {
+        devtool: 'eval-source-map'
+    } : {}
 
     return merge({
         //入口文件的配置项
@@ -40,10 +40,10 @@ module.exports = (env, argv) => {
             //         umdNamedDefine: true
             //     }
             // },
-            secureStorage:'./src/secureStorage',
-            base64:'./src/base64',
-            jsonpRequest:'./src/jsonpRequest',
-            dataFormat:'./src/dataFormat',
+            secureStorage: './src/secureStorage',
+            base64: './src/base64',
+            jsonpRequest: './src/jsonpRequest',
+            dataFormat: './src/dataFormat',
             index: "./src/index"
         },
         //出口文件的配置项
