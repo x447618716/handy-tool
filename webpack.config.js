@@ -7,7 +7,7 @@ const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = (env, argv) => {
     const config = argv.mode === 'development' ? {
-        devtool: 'eval-source-map'
+        devtool: "eval-source-map"
     } : {}
 
     return merge({

@@ -1,10 +1,10 @@
 {
   "name": "handy-tool",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "A set of fast and universal JavaScript/node.js utility functions.",
   "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "typings": "lib/index.d.ts",
+  "types": "lib/types/index.d.ts",
+  "typings": "lib/types/index.d.ts",
   "scripts": {
     "server": "webpack-dev-server --mode=development --config ./webpack.config.js",
     "build": "webpack --mode=production --config ./webpack.config.js"
