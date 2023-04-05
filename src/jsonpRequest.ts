@@ -4,16 +4,12 @@ const formatParams = (data: object | undefined) => {
   let arr = [];
   for (let name in data) {
     arr.push(
-      encodeURIComponent(name) +
-        "=" +
-        encodeURIComponent(data[name as keyof typeof data])
+      `${encodeURIComponent(name)}=${encodeURIComponent(
+        data[name as keyof typeof data]
+      )}`
     );
   }
-  if(!arr.length){
-      return '';
-  }else{
-      return `&${arr.join("&")}`;
-  }
+  return arr.length ? `&${arr.join("&")}` : "";
 };
 
 export const jsonpRequest = (
@@ -36,7 +32,7 @@ export const jsonpRequest = (
     let callbackName: string = ("jsonp_" + Math.random()).replace(".", "");
     let oHead = document.getElementsByTagName("head")[0];
     let params = formatParams(options.data);
-    let oS:any = document.createElement("script");
+    let oS: any = document.createElement("script");
     oHead.appendChild(oS);
     oS.onerror = (e: any) => {
       reject(e);

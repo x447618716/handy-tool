@@ -34,17 +34,11 @@ export class SecureStorage {
     encryptionSecret?: string;
   }) {
     this.config = {
-      isCompression:
-        config && config.isCompression ? Boolean(config.isCompression) : true,
-      isProduction:
-        config && config.isProduction ? Boolean(config.isProduction) : true,
-      storage: (config && config.storage) || window.localStorage,
-      encodingType:
-        config && config.encodingType
-          ? config.encodingType.toLowerCase()
-          : "base64",
-      encryptionSecret:
-        config && config.encryptionSecret ? config.encryptionSecret : "",
+      isCompression: Boolean(config?.isCompression ?? true),
+      isProduction: Boolean(config?.isProduction ?? true),
+      storage: config?.storage ?? window.localStorage,
+      encodingType: config?.encodingType?.toLowerCase() ?? "base64",
+      encryptionSecret: config?.encryptionSecret ?? "",
     };
 
     this.init();
